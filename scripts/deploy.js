@@ -2,25 +2,36 @@ const main = async () => {
     const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
     const gameContract = await gameContractFactory.deploy(
         ["KernelPanic", "InfiniteLoop", "SegmentationFault"],       // Names
-        ["https://github.com/rya-sge/myNFTCollection/blob/main/coll2/InfinieLoop.png", // Images
-            "https://github.com/rya-sge/myNFTCollection/blob/main/coll2/KernelPanic.png",
-            "https://github.com/rya-sge/myNFTCollection/blob/main/coll2/SegmentationFault.png"],
-        [100, 200, 1],                    // HP values
-        [100, 60, 35] , // Attack damage values
+        ["https://raw.githubusercontent.com/rya-sge/myNFTCollection/main/coll2/InfinieLoop.png", // Images
+            "https://raw.githubusercontent.com/rya-sge/myNFTCollection/main/coll2/KernelPanic.png",
+            "https://raw.githubusercontent.com/rya-sge/myNFTCollection/main/coll2/SegmentationFault.png"],
+        [100, 200, 300],                    // HP values
+        [100, 60, 35]      ,
         "C++11", // Boss name
         "https://raw.githubusercontent.com/rya-sge/myNFTCollection/main/coll2/tractor.png", // Boss image
         10000, // Boss hp
-        50 // Boss attack damage                     // Attack damage values
+        50 // Boss attack damage                 // Attack damage values
     );
     await gameContract.deployed();
     console.log("Contract deployed to:", gameContract.address);
 
 
     let txn;
-// We only have three characters.
-// an NFT w/ the character at index 2 of our array.
+    txn = await gameContract.mintCharacterNFT(0);
+    await txn.wait();
+    console.log("Minted NFT #1");
+
+    txn = await gameContract.mintCharacterNFT(1);
+    await txn.wait();
+    console.log("Minted NFT #2");
+
     txn = await gameContract.mintCharacterNFT(2);
     await txn.wait();
+    console.log("Minted NFT #3");
+
+    txn = await gameContract.mintCharacterNFT(1);
+    await txn.wait();
+    console.log("Minted NFT #4");
 
     txn = await gameContract.attackBoss();
     await txn.wait();
@@ -28,9 +39,10 @@ const main = async () => {
     txn = await gameContract.attackBoss();
     await txn.wait();
 
-// Get the value of the NFT's URI.
-    let returnedTokenUri = await gameContract.tokenURI(1);
-    console.log("Token URI:", returnedTokenUri);
+
+    console.log("Done deploying and minting!");
+
+
 
 };
 
