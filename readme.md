@@ -28,4 +28,4 @@ Last version of the collection available on OpenSea : https://testnets.opensea.i
 
 Last contract address : 0xaF8c532A42f0f61d80583F5a912e723caa2532E7
 
-![game](.\assets\game.PNG)
+![game](./assets/game.PNG)
