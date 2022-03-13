@@ -29,3 +29,18 @@ Last version of the collection available on OpenSea : https://testnets.opensea.i
 Last contract address : 0xaF8c532A42f0f61d80583F5a912e723caa2532E7
 
 ![game](./assets/game.PNG)
+
+## Basic Sample Hardhat Project
+
+Commands
+
+```shell
+npx hardhat accounts
+npx hardhat compile
+npx hardhat clean
+npx hardhat test
+npx hardhat node
+node scripts/sample-script.js
+npx hardhat help
+```
+
